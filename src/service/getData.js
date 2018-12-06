@@ -25,9 +25,6 @@ export const teamdeupdate = data => post('/admin/team/update', data);
 export const teamdelete = data => post('/admin/team/delete', data);
 //案例增加
 export const teamdeadd = data => post('/admin/team/add', data);
-
-
-
 //countryconfig列表
 export const countryconfiglist = data => post('/admin/countryconfig', data);
 //countryconfig增加
@@ -84,3 +81,12 @@ export const messageupdate = data => post('/admin/submit/messageupdate', data);
 
 // 获取国家接口
 export const country = data => post('/admin/country');
+
+// 著名学校列表
+export const schoolList = data => post('/admin/schoolList', data);
+//学校删除
+export const schooldelete = data => post('/admin/schooldelete', data);
+// 学校增加
+export const schoolAdd = data => post('/admin/school/add', data);
+//学校修改
+export const schoolUpdate = data => post('/admin/school/update', data);

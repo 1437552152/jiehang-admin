@@ -22,23 +22,6 @@ export default {
           title: "关键词",
           key: "keywords"
         },
-        // {
-        //   title: "语言状态",
-        //   key: "language",
-        //   render(h, params) {
-        //     let text = "";
-        //     if (params.row.language == "cs") {
-        //       text = "捷克语";
-        //     } else if (params.row.language == "zh") {
-        //       text = "中文";
-        //     } else if (params.row.language == "en") {
-        //       text = "英语";
-        //     } else if (params.row.language == "fr") {
-        //       text = "法语";
-        //     }
-        //     return h("div", text);
-        //   }
-        // },
         {
           title: "类型",
           key: "type",

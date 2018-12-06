@@ -8,10 +8,9 @@
 
 <script>
 export default {
-  name: 'query'
-}
+  name: "query"
+};
 </script>
 
 <style>
-
 </style>

@@ -12,7 +12,7 @@
   </div>
 </template>
 <script>
-import { newslist, newsdelete } from "@/service/getData";
+import { schoolList, schooldelete } from "@/service/getData";
 export default {
   name: "famousSchool",
   data() {
@@ -22,34 +22,18 @@ export default {
       total: 1,
       tableTitle: [
         {
-          title: "作者",
-          key: "author"
+          title: "学校名称",
+          key: "schoolName"
         },
         {
           title: "描述",
           key: "des"
         },
         {
-          title: "标题",
-          key: "title"
-        },
-        {
-          title: "发布时间",
-          key: "time"
-        },
-        {
-          title: "浏览量",
-          key: "view"
-        },
-        {
-          title: "点赞数",
-          key: "zan"
-        },
-        {
-          title: "焦点图",
-          key: "pic",
+          title: "学校logo",
+          key: "logo",
           render: (h, params) => {
-            const pic = params.row.focusPic;
+            const pic = params.row.logo;
             let text = "";
             return h("div", [
               h("img", {
@@ -66,17 +50,8 @@ export default {
           }
         },
         {
-          title: "文章类型",
-          key: "newstype",
-          render(h, params) {
-            let text = "";
-            if (params.row.newstype == 0) {
-              text = "普通文章";
-            } else if (params.row.newstype == 1) {
-              text = "热点新闻";
-            }
-            return h("div", text);
-          }
+          title: "录取率",
+          key: "acceptanceRate"
         },
         {
           title: "国家",
@@ -127,7 +102,7 @@ export default {
                   on: {
                     click: () => {
                       const route = {
-                        name: "articledetail",
+                        name: "schooldetail",
                         query: {
                           id
                         },
@@ -169,7 +144,7 @@ export default {
     add() {
       let id = -1;
       const route = {
-        name: "articledetail",
+        name: "schooldetail",
         query: {
           id
         },
@@ -189,7 +164,7 @@ export default {
       this.getData(obj);
     },
     getData(obj) {
-      newslist(obj).then(res => {
+      schoolList(obj).then(res => {
         this.tableData = res.data;
         this.total = res.total;
         this.current = res.currentPage;
@@ -197,7 +172,7 @@ export default {
       });
     },
     godelete(id) {
-      newsdelete({ Id: id }).then(res => {
+      schooldelete({ Id: id }).then(res => {
         if (res.status == 200) {
           this.$Message.success("删除成功");
           this.getData({ pageNo: this.currentPageIdx, pageSize: 10 });

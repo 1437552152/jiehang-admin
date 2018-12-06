@@ -362,25 +362,25 @@ export default [{
       title: '配置管理'
     },
     component: Main,
-    children: [ {
-      path: 'countryconfig',
-      name: '国家配置',
-      meta: {
-        icon: 'md-download',
-        title: '国家配置'
+    children: [{
+        path: 'countryconfig',
+        name: '国家配置',
+        meta: {
+          icon: 'md-download',
+          title: '国家配置'
+        },
+        component: () => import('@/view/content/countryconfig.vue')
       },
-      component: () => import('@/view/content/countryconfig.vue')
-    },
-    {
-      path: 'countryconfig',
-      name: '角色配置',
-      meta: {
-        icon: 'md-download',
-        title: '角色配置'
-      },
-      component: () => import('@/view/content/countryconfig.vue')
-    }  
-  ]
+      {
+        path: 'famousSchool',
+        name: '学校列表',
+        meta: {
+          icon: 'md-download',
+          title: '学校列表'
+        },
+        component: () => import('@/view/content/famousSchool.vue')
+      }
+    ]
   },
   {
     path: '/submit',
@@ -391,23 +391,24 @@ export default [{
     },
     component: Main,
     children: [{
-      path: 'report',
-      name: '报名列表',
-      meta: {
-        icon: 'md-add',
-        title: '报名列表'
+        path: 'report',
+        name: '报名列表',
+        meta: {
+          icon: 'md-add',
+          title: '报名列表'
+        },
+        component: () => import('@/view/submit/report.vue')
       },
-      component: () => import('@/view/submit/report.vue')
-    },
-    {
-      path: 'message',
-      name: '留言列表',
-      meta: {
-        icon: 'md-add',
-        title: '留言列表'
-      },
-      component: () => import('@/view/submit/message.vue')
-    }]
+      {
+        path: 'message',
+        name: '留言列表',
+        meta: {
+          icon: 'md-add',
+          title: '留言列表'
+        },
+        component: () => import('@/view/submit/message.vue')
+      }
+    ]
   },
   {
     path: '/content',
@@ -443,6 +444,15 @@ export default [{
           title: '文章'
         },
         component: () => import('@/view/content/article.vue')
+      },
+      {
+        path: 'pricemeal',
+        name: '价格套餐',
+        meta: {
+          icon: 'md-download',
+          title: '价格套餐'
+        },
+        component: () => import('@/view/content/pricemeal.vue')
       }
     ]
   },
@@ -503,6 +513,16 @@ export default [{
           notCache: true
         },
         component: () => import('@/view/argu-page/Companydetail.vue')
+      },
+      {
+        path: 'query',
+        name: 'schooldetail',
+        meta: {
+          icon: 'md-flower',
+          title: "学校详情",
+          notCache: true
+        },
+        component: () => import('@/view/argu-page/schooldetail.vue')
       }
     ]
   },
