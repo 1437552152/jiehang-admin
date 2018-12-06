@@ -2,7 +2,7 @@
     <div>
       <Button type="primary"  @click="reflash">刷新</Button>
        <Modal
-   v-model="addModal" title="添加国家"
+   v-model="addModal" title="添加套餐"
    @on-ok="ok"  @on-cancel="cancel">
            <Form :model="formItem" :label-width="80">                       
            <FormItem label="国家选择切换">
@@ -13,8 +13,8 @@
           <FormItem label="请填写价格">
                <Input v-model="formItem.price" placeholder="输入价格..."/>
             </FormItem>
-            <FormItem label="时间选择">
-                <DatePicker :value="formItem.addtime" format="yyyy-MM-dd" type="datetimerange" placement="bottom-end" placeholder="Select date" style="width: 200px"></DatePicker>
+            <FormItem label="输入时间范围">
+                <Input v-model="formItem.addtime" placeholder="输入时间范围..."/>
             </FormItem> 
             <FormItem label="请填写地址">
                <Input v-model="formItem.address" placeholder="输入地址..."/>
@@ -36,8 +36,9 @@
           <FormItem label="请填写价格">
                <Input v-model="formItem.price" placeholder="输入价格..."/>
             </FormItem>
-            <FormItem label="时间选择">
-                <DatePicker :value="formItem.addtime" format="yyyy-MM-dd" type="datetimerange" placement="bottom-end" placeholder="Select date" style="width: 200px"></DatePicker>
+            <FormItem label="输入时间范围">
+               <Input v-model="formItem.addtime" placeholder="输入时间范围..."/>
+                <!-- <DatePicker :value="formItem.addtime" format="yyyy-MM-dd" type="datetimerange" placement="bottom-end" placeholder="Select date" style="width: 200px"></DatePicker> -->
             </FormItem> 
             <FormItem label="请填写地址">
                <Input v-model="formItem.address" placeholder="输入地址..."/>
@@ -79,7 +80,7 @@ export default {
       UPModal: false,
       formItem: {
         country: "捷克",
-        addtime: ["2016-01-01", "2016-02-15"],
+        addtime:"",
         price: 0,
         address: "",
         des: ""
@@ -231,6 +232,9 @@ export default {
       this.addModal = false;
       this.UPModal = false;
     },
+    timeChange(val){
+      console.log(val)
+    },
     changePage(pageIndex) {
       this.currentPageIdx = pageIndex;
       let obj = {
@@ -258,7 +262,7 @@ export default {
         }
       });
     },
-    countryconfigIdShow(id) {
+    priceIdShow(id) {
       pricedetail({ Id: id }).then(res => {
         this.formItem.country = res.data[0].country;
         this.formItem.price = res.data[0].price;
@@ -269,7 +273,7 @@ export default {
     },
     goupdate(id) {
       this.UPModal = true;
-      this.countryconfigIdShow(id);
+      this.priceIdShow(id);
     },
     getCountry() {
       let that = this;
