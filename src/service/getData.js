@@ -90,3 +90,16 @@ export const schooldelete = data => post('/admin/schooldelete', data);
 export const schoolAdd = data => post('/admin/school/add', data);
 //学校修改
 export const schoolUpdate = data => post('/admin/school/update', data);
+//查看某一个学校的详情
+export const schooldetail = data => post('/admin/school/detail', data);
+
+
+//套餐列表
+export const priceList = data => post('/admin/priceList', data);
+//套餐删除
+export const pricedelete = data => post('/admin/price/delete', data);
+//套餐增加
+export const priceadd = data => post('/admin/price/add', data);
+//套餐修改
+export const priceUpdate= data => post('/admin/price/update', data);
+

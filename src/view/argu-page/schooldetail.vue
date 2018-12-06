@@ -38,7 +38,7 @@
 <script>
 import {
   BASICURL,
-  newsdetail,
+  schooldetail,
   schoolUpdate,
   schoolAdd,
   country
@@ -94,12 +94,12 @@ export default {
       this.article = "";
     },
     getData(params) {
-      newsdetail(params).then(res => {
+      schooldetail(params).then(res => {
         this.formItem.schoolName = res.data[0].schoolName;
         this.formItem.country = res.data[0].country;
         this.formItem.des = res.data[0].des;
         this.formItem.acceptanceRate = res.data[0].acceptanceRate;
-        this.pic = res.data[0].focusPic;
+        this.pic = res.data[0].logo;
         this.content = this.article = res.data[0].content;
         this.$refs.editor.setHtml(this.content);
       });

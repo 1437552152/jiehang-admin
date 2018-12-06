@@ -64,19 +64,6 @@ export default {
         {
           title: "国家",
           key: "country"
-          // render(h, params) {
-          //   let text = "";
-          //   if (params.row.language == "cs") {
-          //     text = "捷克语";
-          //   } else if (params.row.language == "zh") {
-          //     text = "中文";
-          //   } else if (params.row.language == "en") {
-          //     text = "英语";
-          //   } else if (params.row.language == "fr") {
-          //     text = "法语";
-          //   }
-          //   return h("div", text);
-          // }
         },
         {
           title: "操作",

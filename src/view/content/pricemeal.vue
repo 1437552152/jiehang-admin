@@ -4,97 +4,47 @@
        <Modal
    v-model="addModal" title="添加国家"
    @on-ok="ok"  @on-cancel="cancel">
-           <Form :model="formItem" :label-width="80">                 
-            <FormItem label="地区选择">
-                <RadioGroup v-model="formItem.typeid">
-                    <Radio label="zo">中欧</Radio>
-                    <Radio label="do">东欧</Radio>
-                    <Radio label="xo">西欧</Radio>
-                    <Radio label="no">南欧</Radio>
-                    <Radio label="bo">北欧</Radio>
-                    <Radio label="dny">东南亚</Radio>
+           <Form :model="formItem" :label-width="80">                       
+           <FormItem label="国家选择切换">
+                <RadioGroup v-model="formItem.country">
+                    <Radio  v-for="(item,index) in countrydata" :key="index"  :label='item.country' :value="item.country">{{item.country}}</Radio>
                 </RadioGroup>
+            </FormItem> 
+          <FormItem label="请填写价格">
+               <Input v-model="formItem.price" placeholder="输入价格..."/>
             </FormItem>
-
-            <FormItem label="请填写国家名">
-               <Input v-model="formItem.country" placeholder="输入国家名称..."/>
+            <FormItem label="时间选择">
+                <DatePicker :value="formItem.addtime" format="yyyy-MM-dd" type="datetimerange" placement="bottom-end" placeholder="Select date" style="width: 200px"></DatePicker>
+            </FormItem> 
+            <FormItem label="请填写地址">
+               <Input v-model="formItem.address" placeholder="输入地址..."/>
             </FormItem>
-
-            <div class="clearfix"></div>
-            <div class="acc_sc">
-                <img  id="aliImg" :src="logo">
-                <Upload ref="upload"  name="picUrl" :show-upload-list="false"  :on-success="aliHandleSuccess"  :action="uploadUrl" enctype="multipart/form-data">
-                  <Button type="primary"   icon="ios-cloud-upload-outline">上传logo</Button>
-                </Upload>
-            </div> 
-              <div class="acc_sc">
-                <img  id="aliImg" :src="pic1">
-                <Upload ref="upload"  name="picUrl" :show-upload-list="false"  :on-success="aliHandleSuccess1"  :action="uploadUrl" enctype="multipart/form-data">
-                  <Button type="primary"   icon="ios-cloud-upload-outline">上传banner1</Button>
-                </Upload>
-            </div> 
-              <div class="clearfix"></div>
-             <div class="acc_sc">
-                <img  id="aliImg" :src="pic2">
-                <Upload ref="upload"  name="picUrl" :show-upload-list="false"  :on-success="aliHandleSuccess2"  :action="uploadUrl" enctype="multipart/form-data">
-                  <Button type="primary"   icon="ios-cloud-upload-outline">上传banner2</Button>
-                </Upload>
-            </div>   
-             <div class="acc_sc">
-                <img  id="aliImg" :src="pic3">
-                <Upload ref="upload"  name="picUrl" :show-upload-list="false"  :on-success="aliHandleSuccess3"  :action="uploadUrl" enctype="multipart/form-data">
-                  <Button type="primary"   icon="ios-cloud-upload-outline">上传banner3</Button>
-                </Upload>
-            </div>  
-              <div class="clearfix"></div>               
+           <FormItem label="请填写描述信息">
+               <Input v-model="formItem.des" type="textarea" :autosize="{minRows: 2,maxRows: 5}"  placeholder="输入描述信息..."/>
+            </FormItem>      
         </Form>
     </Modal>
      <Modal
    v-model="UPModal" title="修改国家"
    @on-ok="okUP"  @on-cancel="cancel">
-          <Form :model="formItem" :label-width="80">                 
-            <FormItem label="地区选择">
-                <RadioGroup v-model="formItem.typeid">
-                    <Radio label="zo">中欧</Radio>
-                    <Radio label="do">东欧</Radio>
-                    <Radio label="xo">西欧</Radio>
-                    <Radio label="no">南欧</Radio>
-                    <Radio label="bo">北欧</Radio>
-                    <Radio label="dny">东南亚</Radio>
+          <Form :model="formItem" :label-width="80">                       
+           <FormItem label="国家选择切换">
+                <RadioGroup v-model="formItem.country">
+                    <Radio  v-for="(item,index) in countrydata" :key="index"  :label='item.country' :value="item.country">{{item.country}}</Radio>
                 </RadioGroup>
+            </FormItem> 
+          <FormItem label="请填写价格">
+               <Input v-model="formItem.price" placeholder="输入价格..."/>
             </FormItem>
-
-            <FormItem label="请填写国家名">
-               <Input v-model="formItem.country" placeholder="输入国家名称..."/>
+            <FormItem label="时间选择">
+                <DatePicker :value="formItem.addtime" format="yyyy-MM-dd" type="datetimerange" placement="bottom-end" placeholder="Select date" style="width: 200px"></DatePicker>
+            </FormItem> 
+            <FormItem label="请填写地址">
+               <Input v-model="formItem.address" placeholder="输入地址..."/>
             </FormItem>
-
-            <div class="clearfix"></div>
-            <div class="acc_sc">
-                <img  id="aliImg" :src="logo">
-                <Upload ref="upload"  name="picUrl" :show-upload-list="false"  :on-success="aliHandleSuccess"  :action="uploadUrl" enctype="multipart/form-data">
-                  <Button type="primary"   icon="ios-cloud-upload-outline">上传logo</Button>
-                </Upload>
-            </div> 
-              <div class="acc_sc">
-                <img  id="aliImg" :src="pic1">
-                <Upload ref="upload"  name="picUrl" :show-upload-list="false"  :on-success="aliHandleSuccess1"  :action="uploadUrl" enctype="multipart/form-data">
-                  <Button type="primary"   icon="ios-cloud-upload-outline">上传banner1</Button>
-                </Upload>
-            </div> 
-              <div class="clearfix"></div>
-             <div class="acc_sc">
-                <img  id="aliImg" :src="pic2">
-                <Upload ref="upload"  name="picUrl" :show-upload-list="false"  :on-success="aliHandleSuccess2"  :action="uploadUrl" enctype="multipart/form-data">
-                  <Button type="primary"   icon="ios-cloud-upload-outline">上传banner2</Button>
-                </Upload>
-            </div>   
-             <div class="acc_sc">
-                <img  id="aliImg" :src="pic3">
-                <Upload ref="upload"  name="picUrl" :show-upload-list="false"  :on-success="aliHandleSuccess3"  :action="uploadUrl" enctype="multipart/form-data">
-                  <Button type="primary"   icon="ios-cloud-upload-outline">上传banner3</Button>
-                </Upload>
-            </div>  
-              <div class="clearfix"></div>             
+           <FormItem label="请填写描述信息">
+               <Input v-model="formItem.des" type="textarea" :autosize="{minRows: 2,maxRows: 5}"  placeholder="输入描述信息..."/>
+            </FormItem>      
         </Form>
     </Modal>
         <Button type="primary"    @click="add" style="float:right">增加</Button>
@@ -109,140 +59,51 @@
 </template>
 <script>
 import {
-  countryconfigdelete,
-  countryconfiglist,
-  BASICURL,
-  countryconfigUpdate,
-  countryconfigdetail,
-  countryconfigadd
+  pricedelete,
+  priceList,
+  priceUpdate,
+  country,
+  pricedetail,
+  priceadd
 } from "@/service/getData";
 export default {
   name: "pricemeal",
   data() {
     return {
+      countrydata: null,
       currentPageIdx: 1,
       current: 1,
       total: 1,
       id: 0,
       addModal: false,
       UPModal: false,
-      // showModal:false,
-      uploadUrl: BASICURL + "admin/upload",
-      logo: require("../../assets/images/talkingdata.png"),
-      pic1: require("../../assets/images/talkingdata.png"),
-      pic2: require("../../assets/images/talkingdata.png"),
-      pic3: require("../../assets/images/talkingdata.png"),
       formItem: {
-        country: "",
-        typeid: "zo"
+        country: "捷克",
+        addtime: ["2016-01-01", "2016-02-15"],
+        price: 0,
+        address: "",
+        des: ""
       },
       tableTitle: [
         {
-          title: "logo图片",
-          key: "logo",
-          align: "center",
-          render: (h, params) => {
-            const pic = params.row.logo;
-            let text = "";
-            return h("div", [
-              h("img", {
-                attrs: {
-                  src: pic
-                },
-                style: {
-                  width: "100px",
-                  height: "70px"
-                }
-              }),
-              h("span", {}, text)
-            ]);
-          }
+          title: "价格",
+          key: "price",
+          align: "center"
         },
         {
-          title: "banner1",
-          key: "pic1",
-          align: "center",
-          render: (h, params) => {
-            const pic = params.row.pic1;
-            let text = "";
-            return h("div", [
-              h("img", {
-                attrs: {
-                  src: pic
-                },
-                style: {
-                  width: "100px",
-                  height: "70px"
-                }
-              }),
-              h("span", {}, text)
-            ]);
-          }
+          title: "地址",
+          key: "address",
+          align: "center"
         },
         {
-          title: "banner2",
-          key: "pic2",
-          align: "center",
-          render: (h, params) => {
-            const pic = params.row.pic2;
-            let text = "";
-            return h("div", [
-              h("img", {
-                attrs: {
-                  src: pic
-                },
-                style: {
-                  width: "100px",
-                  height: "70px"
-                }
-              }),
-              h("span", {}, text)
-            ]);
-          }
+          title: "描述",
+          key: "des",
+          align: "center"
         },
         {
-          title: "banner3",
-          key: "pic3",
-          align: "center",
-          render: (h, params) => {
-            const pic = params.row.pic3;
-            let text = "";
-            return h("div", [
-              h("img", {
-                attrs: {
-                  src: pic
-                },
-                style: {
-                  width: "100px",
-                  height: "70px"
-                }
-              }),
-              h("span", {}, text)
-            ]);
-          }
-        },
-        {
-          title: "地区类型",
-          key: "typeid",
-          align: "center",
-          render: (h, params) => {
-            const typeid = params.row.typeid;
-            let text = "";
-            if (typeid == "zo") {
-              text = "中欧";
-            } else if (typeid == "xo") {
-              text = "西欧";
-            } else if (typeid == "no") {
-              text = "南欧";
-            } else if (typeid == "bo") {
-              text = "北欧";
-            } else if (typeid == "do") {
-              text = "东欧";
-            } else if (typeid == "dny") {
-              text = "东南亚";
-            }
-            return h("div", {}, text);
-          }
+          title: "时间",
+          key: "addtime",
+          align: "center"
         },
         {
           title: "国家",
@@ -328,23 +189,16 @@ export default {
     // 模态框的出现与隐藏
     add() {
       this.addModal = true;
-      this.logo = require("../../assets/images/talkingdata.png");
-      this.pic1 = require("../../assets/images/talkingdata.png");
-      this.pic2 = require("../../assets/images/talkingdata.png");
-      this.pic3 = require("../../assets/images/talkingdata.png");
-      this.formItem.typeid = "zo";
-      this.formItem.country = "";
     },
     // 点击确定时
     ok() {
       let params = [];
-      params["logo"] = this.logo || "";
-      params["pic1"] = this.pic1 || "";
-      params["pic2"] = this.pic2 || "";
-      params["pic3"] = this.pic3 || "";
       params["country"] = this.formItem.country;
-      params["typeid"] = this.formItem.typeid;
-      countryconfigadd(params).then(res => {
+      params["price"] = this.formItem.price;
+      params["addtime"] = this.formItem.addtime;
+      params["address"] = this.formItem.address;
+      params["des"] = this.formItem.des;
+      priceadd(params).then(res => {
         if (res.status == 200) {
           this.$Message.success("增加成功");
           this.getData({ pageNo: this.currentPageIdx, pageSize: 10 });
@@ -356,14 +210,13 @@ export default {
     },
     okUP() {
       let params = [];
-      params["logo"] = this.logo || "";
-      params["pic1"] = this.pic1 || "";
-      params["pic2"] = this.pic2 || "";
-      params["pic3"] = this.pic3 || "";
-      params["typeid"] = this.formItem.typeid;
       params["country"] = this.formItem.country;
+      params["price"] = this.formItem.price;
+      params["addtime"] = this.formItem.addtime;
+      params["address"] = this.formItem.address;
+      params["des"] = this.formItem.des;
       params["Id"] = this.id;
-      countryconfigUpdate(params).then(res => {
+      priceUpdate(params).then(res => {
         console.log(res);
         if (res.status == 200) {
           this.$Message.success("修改成功");
@@ -378,18 +231,6 @@ export default {
       this.addModal = false;
       this.UPModal = false;
     },
-    aliHandleSuccess(res, file) {
-      this.logo = BASICURL + res.ret_code;
-    },
-    aliHandleSuccess1(res, file) {
-      this.pic1 = BASICURL + res.ret_code;
-    },
-    aliHandleSuccess2(res, file) {
-      this.pic2 = BASICURL + res.ret_code;
-    },
-    aliHandleSuccess3(res, file) {
-      this.pic3 = BASICURL + res.ret_code;
-    },
     changePage(pageIndex) {
       this.currentPageIdx = pageIndex;
       let obj = {
@@ -399,7 +240,7 @@ export default {
       this.getData(obj);
     },
     getData(obj) {
-      countryconfiglist(obj).then(res => {
+      priceList(obj).then(res => {
         this.tableData = res.data;
         this.total = res.total;
         this.current = res.currentPage;
@@ -407,7 +248,7 @@ export default {
       });
     },
     godelete(id) {
-      countryconfigdelete({ Id: id }).then(res => {
+      pricedelete({ Id: id }).then(res => {
         if (res.status == 200) {
           this.$Message.success("删除成功");
           this.getData({ pageNo: this.currentPageIdx, pageSize: 10 });
@@ -418,21 +259,27 @@ export default {
       });
     },
     countryconfigIdShow(id) {
-      countryconfigdetail({ Id: id }).then(res => {
-        this.logo = res.data[0].logo;
-        this.pic1 = res.data[0].pic1;
-        this.pic2 = res.data[0].pic2;
-        this.pic3 = res.data[0].pic3;
-        this.formItem.typeid = res.data[0].typeid;
+      pricedetail({ Id: id }).then(res => {
         this.formItem.country = res.data[0].country;
+        this.formItem.price = res.data[0].price;
+        this.formItem.addtime = res.data[0].addtime;
+        this.formItem.address = res.data[0].address;
+        this.formItem.des = res.data[0].des;
       });
     },
     goupdate(id) {
       this.UPModal = true;
       this.countryconfigIdShow(id);
+    },
+    getCountry() {
+      let that = this;
+      country().then(res => {
+        that.countrydata = res.data;
+      });
     }
   },
   created() {
+    this.getCountry();
     this.getData({ pageNo: this.currentPageIdx, pageSize: 10 });
   }
 };
