@@ -4,11 +4,11 @@
   "author": "Lison<lison.modern@gmail.com>",
   "private": false,
   "scripts": {
-    "init": "webpack --progress --config build/webpack.dev.config.js",
-    "dev": "webpack-dev-server --content-base ./ --open --inline --hot --compress --config build/webpack.dev.config.js",
-    "build": "webpack --progress --hide-modules --config build/webpack.prod.config.js",
-    "lint": "eslint --fix --ext .js,.vue src",
-    "test": "npm run lint"
+    "dev": "vue-cli-service serve --open",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "test:unit": "vue-cli-service test:unit",
+    "test:e2e": "vue-cli-service test:e2e"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -55,18 +55,5 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ],
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.js": [
-      "vue-cli-service lint",
-      "git add"
-    ],
-    "*.vue": [
-      "vue-cli-service lint",
-      "git add"
-    ]
-  }
+  ]
 }
