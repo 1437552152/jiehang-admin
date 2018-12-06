@@ -14,7 +14,7 @@
 <script>
 import { newslist, newsdelete } from "@/service/getData";
 export default {
-  name: "article",
+  name: "famousSchool",
   data() {
     return {
       currentPageIdx: 1,

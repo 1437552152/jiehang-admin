@@ -31,14 +31,11 @@
        <FormItem label="指导老师">
             <Input v-model="formItem.teachname" placeholder="请输入指导姓名..."/>
         </FormItem>
-        <FormItem label="语言切换">
-            <RadioGroup v-model="formItem.language">
-                <Radio label="zh">中文</Radio>
-                <Radio label="en">英文</Radio>
-                <Radio label="cs">捷克语</Radio>
-                <Radio label="fr">法语</Radio>
+         <FormItem label="国家选择切换">
+            <RadioGroup v-model="formItem.country">
+                <Radio  v-for="(item,index) in countrydata" :key="index"  :label='item.country' :value="item.country">{{item.country}}</Radio>
             </RadioGroup>
-        </FormItem>
+        </FormItem>  
         <FormItem label="语言等级">
              <Input v-model="formItem.languagelevel" placeholder="请输入语言等级..."/>
         </FormItem>
@@ -50,7 +47,9 @@
             <Upload ref="upload"  name="picUrl" :show-upload-list="false"  :on-success="aliHandleSuccess"  :action="uploadUrl" enctype="multipart/form-data">
               <Button type="success"   icon="ios-cloud-upload-outline">上传学生图片</Button>
             </Upload>
+         <div class="clearfix"></div>
         </div>
+         <div class="clearfix"></div>
     <editor ref="editor" :value="content" @on-change="handleChange"/>
     <!-- <button @click="changeContent">修改编辑器内容</button> -->
         <FormItem>
@@ -66,6 +65,7 @@ import {
   BASICURL,
   teamdetail,
   teamdeupdate,
+  country,
   teamdeadd
 } from "@/service/getData";
 import Editor from "_c/editor";
@@ -78,14 +78,14 @@ export default {
     return {
       uploadUrl: BASICURL + "admin/upload",
       pic: require("../../assets/images/talkingdata.png"),
+      countrydata: null,
       formItem: {
         studentname: "",
         address: "",
         score: "",
         education: "",
         teachname: "",
-        language: "zh",
-        radio: "zh",
+        country: "捷克",
         school: "",
         introduceBriefly: "",
         languagelevel: ""
@@ -95,6 +95,7 @@ export default {
     };
   },
   created() {
+    this.getCountry();
     if (this.$route.query.id != -1) {
       this.getData({ id: this.$route.query.id });
     } else {
@@ -105,6 +106,12 @@ export default {
     aliHandleSuccess(res, file) {
       this.pic = BASICURL + res.ret_code;
     },
+    getCountry() {
+      let that = this;
+      country().then(res => {
+        that.countrydata = res.data;
+      });
+    },
     getblank() {
       this.$refs.editor.setHtml("");
       this.formItem.studentname = "";
@@ -113,7 +120,7 @@ export default {
       this.formItem.education = "";
       this.formItem.teachname = "";
       this.formItem.school = "";
-      this.formItem.language = "zh";
+      this.formItem.country = "捷克";
       this.formItem.languagelevel = "";
       this.formItem.introduceBriefly = "";
       (this.pic = require("../../assets/images/talkingdata.png")),
@@ -127,7 +134,7 @@ export default {
         this.formItem.education = res.data[0].education;
         this.formItem.teachname = res.data[0].teachname;
         this.formItem.school = res.data[0].school;
-        this.formItem.language = res.data[0].language;
+        this.formItem.country = res.data[0].country;
         this.formItem.languagelevel = res.data[0].languagelevel;
         this.formItem.introduceBriefly = res.data[0].introduceBriefly;
         this.pic = res.data[0].pic;
@@ -146,9 +153,8 @@ export default {
       params["score"] = this.formItem.score;
       params["education"] = this.formItem.education;
       params["school"] = this.formItem.school;
-      params["language"] = this.formItem.language;
+      params["country"] = this.formItem.country;
       params["teachname"] = this.formItem.teachname;
-      params["radio"] = this.formItem.radio;
       params["introduceBriefly"] = this.formItem.introduceBriefly;
       params["languagelevel"] = this.formItem.languagelevel;
       params["content"] = this.content;

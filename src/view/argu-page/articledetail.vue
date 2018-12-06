@@ -20,17 +20,13 @@
         </FormItem>
         <FormItem label="文章类型">
             <Select v-model="formItem.newstype">
-                <Option value="0">企业新闻</Option>
-                <Option value="1">行业新闻</Option>             
+                <Option value="0">普通文章</Option>
+                <Option value="1">热点文章</Option>             
             </Select>
         </FormItem>
-    
-        <FormItem label="语言切换">
-            <RadioGroup v-model="formItem.language">
-                <Radio label="zh">中文</Radio>
-                <Radio label="en">英文</Radio>
-                <Radio label="cs">捷克语</Radio>
-                <Radio label="fr">法语</Radio>
+        <FormItem label="国家选择切换">
+            <RadioGroup v-model="formItem.country">
+                <Radio  v-for="(item,index) in countrydata" :key="index"  :label='item.country' :value="item.country">{{item.country}}</Radio>
             </RadioGroup>
         </FormItem>   
         <div class="acc_sc">
@@ -38,7 +34,9 @@
             <Upload ref="upload"  name="picUrl" :show-upload-list="false"  :on-success="aliHandleSuccess"  :action="uploadUrl" enctype="multipart/form-data">
               <Button type="success"   icon="ios-cloud-upload-outline">上传焦点图片</Button>
             </Upload>
+            <div class="clearfix"></div>
         </div>
+         <div class="clearfix"></div>
     <editor ref="editor" :value="content" @on-change="handleChange"/>
     <!-- <button @click="changeContent">修改编辑器内容</button> -->
         <FormItem>
@@ -50,7 +48,13 @@
   </div>
 </template>
 <script>
-import { BASICURL, newsdetail, newsUpdate, newsadd } from "@/service/getData";
+import {
+  BASICURL,
+  newsdetail,
+  newsUpdate,
+  newsadd,
+  country
+} from "@/service/getData";
 import Editor from "_c/editor";
 import { mapMutations } from "vuex";
 export default {
@@ -62,9 +66,10 @@ export default {
     return {
       uploadUrl: BASICURL + "admin/upload",
       pic: require("../../assets/images/talkingdata.png"),
+      countrydata: null,
       formItem: {
         title: "",
-        language: "zh",
+        country: "捷克",
         author: "",
         des: "",
         keyword: "",
@@ -75,6 +80,7 @@ export default {
     };
   },
   created() {
+    this.getCountry();
     if (this.$route.query.id != -1) {
       this.getData({ id: this.$route.query.id });
     } else {
@@ -85,6 +91,12 @@ export default {
     ...mapMutations(["closeTag"]),
     aliHandleSuccess(res, file) {
       this.pic = BASICURL + res.ret_code;
+    },
+    getCountry() {
+      let that = this;
+      country().then(res => {
+        that.countrydata = res.data;
+      });
     },
     getblank() {
       this.$refs.editor.setHtml("");
@@ -100,7 +112,7 @@ export default {
     getData(params) {
       newsdetail(params).then(res => {
         this.formItem.title = res.data[0].title;
-        this.formItem.language = res.data[0].language;
+        this.formItem.country = res.data[0].country;
         this.formItem.author = res.data[0].author;
         this.formItem.des = res.data[0].des;
         this.formItem.keyword = res.data[0].keyword;
@@ -118,7 +130,7 @@ export default {
       params["pic"] = this.pic;
       params["title"] = this.formItem.title;
       params["author"] = this.formItem.author;
-      params["language"] = this.formItem.language;
+      params["country"] = this.formItem.country;
       params["des"] = this.formItem.des;
       params["newstype"] = this.formItem.newstype;
       params["content"] = this.content;

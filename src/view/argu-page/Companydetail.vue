@@ -17,14 +17,14 @@
         <FormItem label="文章关键词">
             <Input v-model="formItem.keywords" placeholder="请输入文章关键词..."/>
         </FormItem> 
-        <FormItem label="语言切换">
+        <!-- <FormItem label="语言切换">
             <RadioGroup v-model="formItem.language">
                 <Radio label="zh">中文</Radio>
                 <Radio label="en">英文</Radio>
                 <Radio label="cs">捷克语</Radio>
                 <Radio label="fr">法语</Radio>
             </RadioGroup>
-        </FormItem>   
+        </FormItem>    -->
     <editor ref="editor" :value="content" @on-change="handleChange"/>
     <!-- <button @click="changeContent">修改编辑器内容</button> -->
         <FormItem>
@@ -36,7 +36,12 @@
   </div>
 </template>
 <script>
-import { BASICURL, companydetail, companyupdate, companyadd } from "@/service/getData";
+import {
+  BASICURL,
+  companydetail,
+  companyupdate,
+  companyadd
+} from "@/service/getData";
 import Editor from "_c/editor";
 import { mapMutations } from "vuex";
 export default {
@@ -45,9 +50,9 @@ export default {
     Editor
   },
   data() {
-    return { 
-      formItem: {     
-        language: "zh",     
+    return {
+      formItem: {
+        // language: "zh",
         keywords: "",
         type: "0"
       },
@@ -64,7 +69,7 @@ export default {
   },
   methods: {
     getblank() {
-      this.$refs.editor.setHtml("");  
+      this.$refs.editor.setHtml("");
       this.formItem.keywords = "";
       this.formItem.type = "0";
       this.content = "";
@@ -72,7 +77,7 @@ export default {
     },
     getData(params) {
       companydetail(params).then(res => {
-        this.formItem.language = res.data[0].language;
+        // this.formItem.language = res.data[0].language;
         this.formItem.keywords = res.data[0].keywords;
         this.formItem.type = res.data[0].type;
         this.content = this.article = res.data[0].content;
@@ -84,16 +89,15 @@ export default {
     },
     sure() {
       let params = [];
- 
-      params["language"] = this.formItem.language;  
+      // params["language"] = this.formItem.language;
       params["type"] = this.formItem.type;
       params["content"] = this.content;
       params["keywords"] = this.formItem.keywords;
-     
+
       if (this.$route.query.id != -1) {
-         params["Id"] = this.$route.query.id;
+        params["Id"] = this.$route.query.id;
         params["content"] = this.article;
-        companyupdate(params).then(res => {       
+        companyupdate(params).then(res => {
           if (res.status == 200) {
             this.$Message.success("修改成功");
           } else {
@@ -102,7 +106,7 @@ export default {
         });
       } else {
         params["content"] = this.article;
-        companyadd(params).then(res => {     
+        companyadd(params).then(res => {
           if (res.status == 200) {
             this.$Message.success("增加成功");
           } else {

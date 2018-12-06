@@ -48,10 +48,10 @@ export default {
                 attrs: {
                   src: pic
                 },
-                 style: {
-                    width: "100px",
-                    height:"70px"
-                  },
+                style: {
+                  width: "100px",
+                  height: "70px"
+                }
               }),
               h("span", {}, text)
             ]);
@@ -61,22 +61,22 @@ export default {
           title: "简介",
           key: "introduceBriefly"
         },
-         {
-          title: "语言状态",
-          key: "language",
-          render(h, params) {
-            let text = "";
-            if (params.row.language == "cs") {
-              text = "捷克语";
-            } else if (params.row.language == "zh") {
-              text = "中文";
-            } else if (params.row.language == "en") {
-              text = "英语";
-            } else if (params.row.language == "fr") {
-              text = "法语";
-            }
-            return h("div", text);
-          }
+        {
+          title: "国家",
+          key: "country"
+          // render(h, params) {
+          //   let text = "";
+          //   if (params.row.language == "cs") {
+          //     text = "捷克语";
+          //   } else if (params.row.language == "zh") {
+          //     text = "中文";
+          //   } else if (params.row.language == "en") {
+          //     text = "英语";
+          //   } else if (params.row.language == "fr") {
+          //     text = "法语";
+          //   }
+          //   return h("div", text);
+          // }
         },
         {
           title: "操作",
@@ -145,25 +145,25 @@ export default {
     };
   },
   methods: {
-      reflash(){
-         this.$Spin.show({
-                    render: (h) => {
-                        return h('div', [
-                            h('Icon', {
-                                'class': 'demo-spin-icon-load',
-                                props: {
-                                    type: 'ios-loading',
-                                    size: 18
-                                }
-                            }),
-                            h('div', 'Loading')
-                        ])
-                    }
-                });
-       this.getData({ pageNo: this.currentPageIdx, pageSize: 10 });
+    reflash() {
+      this.$Spin.show({
+        render: h => {
+          return h("div", [
+            h("Icon", {
+              class: "demo-spin-icon-load",
+              props: {
+                type: "ios-loading",
+                size: 18
+              }
+            }),
+            h("div", "Loading")
+          ]);
+        }
+      });
+      this.getData({ pageNo: this.currentPageIdx, pageSize: 10 });
     },
     add() {
-      let id=-1;
+      let id = -1;
       const route = {
         name: "teamdetail",
         query: {
@@ -188,7 +188,7 @@ export default {
         this.tableData = res.data;
         this.total = res.total;
         this.current = res.currentPage;
-         this.$Spin.hide();
+        this.$Spin.hide();
       });
     },
     godelete(id) {
@@ -198,16 +198,18 @@ export default {
           this.getData({ pageNo: this.currentPageIdx, pageSize: 10 });
         } else {
           this.$Message.error("删除失败");
-          this.getData({ pageNo: this.currentPageIdx, pageSize: 10 })
+          this.getData({ pageNo: this.currentPageIdx, pageSize: 10 });
         }
       });
     }
   },
   created() {
-    this.getData({ pageNo: this.currentPageIdx, pageSize: 10 })
+    this.getData({ pageNo: this.currentPageIdx, pageSize: 10 });
   }
-}
+};
 </script>
 <style lang="less" scoped>
-.clearfix{clear:both}
+.clearfix {
+  clear: both;
+}
 </style>

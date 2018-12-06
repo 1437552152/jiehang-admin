@@ -6,16 +6,17 @@
 
 <script>
 export default {
-  name: 'App'
-}
+  name: "App"
+};
 </script>
 
 <style lang="less">
-.size{
+.size {
   width: 100%;
   height: 100%;
 }
-html,body{
+html,
+body {
   .size;
   overflow: hidden;
   margin: 0;
@@ -24,16 +25,16 @@ html,body{
 #app {
   .size;
 }
-.acc_sc .ivu-upload{
-    float: left;
-    margin-right:10px;
+.acc_sc .ivu-upload {
+  float: left;
+  margin-right: 10px;
 }
-.acc_sc{
+.acc_sc {
   margin-bottom: 20px;
   width: 50%;
   float: left;
 }
-
-
-
+.clearfix {
+  clear: both;
+}
 </style>

@@ -10,11 +10,13 @@ import i18n from '@/locale'
 import config from '@/config'
 import importDirective from '@/directive'
 import installPlugin from '@/plugin'
+import VueClipboard from "vue-clipboard2";
 import 'iview/dist/styles/iview.css'
 import './index.less'
 import '@/assets/icons/iconfont.css'
 import axios from 'axios';
-axios.defaults.withCredentials =true;
+Vue.use(VueClipboard);
+axios.defaults.withCredentials = true;
 Vue.prototype.$ajax = axios;
 axios.defaults.withCredentials = true;
 axios.interceptors.response.use((response) => {
@@ -23,10 +25,10 @@ axios.interceptors.response.use((response) => {
   let url = response.config.url;
 
   if (data.code === 4000) {
-  
+
   }
   if (data.code === 5000) {
-  
+
   }
   return response;
 })

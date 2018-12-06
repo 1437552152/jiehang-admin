@@ -22,23 +22,23 @@ export default {
           title: "关键词",
           key: "keywords"
         },
-        {
-          title: "语言状态",
-          key: "language",
-          render(h, params) {
-            let text = "";
-            if (params.row.language == "cs") {
-              text = "捷克语";
-            } else if (params.row.language == "zh") {
-              text = "中文";
-            } else if (params.row.language == "en") {
-              text = "英语";
-            } else if (params.row.language == "fr") {
-              text = "法语";
-            }
-            return h("div", text);
-          }
-        },
+        // {
+        //   title: "语言状态",
+        //   key: "language",
+        //   render(h, params) {
+        //     let text = "";
+        //     if (params.row.language == "cs") {
+        //       text = "捷克语";
+        //     } else if (params.row.language == "zh") {
+        //       text = "中文";
+        //     } else if (params.row.language == "en") {
+        //       text = "英语";
+        //     } else if (params.row.language == "fr") {
+        //       text = "法语";
+        //     }
+        //     return h("div", text);
+        //   }
+        // },
         {
           title: "类型",
           key: "type",
@@ -125,22 +125,22 @@ export default {
     };
   },
   methods: {
-      reflash(){
-         this.$Spin.show({
-                    render: (h) => {
-                        return h('div', [
-                            h('Icon', {
-                                'class': 'demo-spin-icon-load',
-                                props: {
-                                    type: 'ios-loading',
-                                    size: 18
-                                }
-                            }),
-                            h('div', 'Loading')
-                        ])
-                    }
-                });
-       this.getData();
+    reflash() {
+      this.$Spin.show({
+        render: h => {
+          return h("div", [
+            h("Icon", {
+              class: "demo-spin-icon-load",
+              props: {
+                type: "ios-loading",
+                size: 18
+              }
+            }),
+            h("div", "Loading")
+          ]);
+        }
+      });
+      this.getData();
     },
     add() {
       let id = -1;
@@ -158,7 +158,7 @@ export default {
     getData() {
       companylist().then(res => {
         this.tableData = res.data;
-         this.$Spin.hide();
+        this.$Spin.hide();
       });
     },
     godelete(id) {
