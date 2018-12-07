@@ -102,4 +102,5 @@ export const pricedelete = data => post('/admin/price/delete', data);
 export const priceadd = data => post('/admin/price/add', data);
 //套餐修改
 export const priceUpdate= data => post('/admin/price/update', data);
-
+//套餐详情
+export const pricedetail= data => post('/admin/price/detail', data);
