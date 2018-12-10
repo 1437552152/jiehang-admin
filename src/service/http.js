@@ -1,7 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 
-export const BASEURL = axios.defaults.baseURL = 'http://127.0.0.1:8888/'; //币呗
+export const BASEURL = axios.defaults.baseURL = 'http://127.0.0.1:8080/'; //币呗
 
 // export const BASEURL = axios.defaults.baseURL = 'http://47.107.180.202:8181/';
 export const fetch = (url, params = {}) => {

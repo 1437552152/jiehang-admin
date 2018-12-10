@@ -5,13 +5,13 @@
     </Card> -->
 <div style="margin:0 auto;width:700px">
  <Form :model="formItem" :label-width="80">  
-        <FormItem label="文章类型">
+        <FormItem label="文章类型" v-if="this.$route.query.id == -1">
             <Select v-model="formItem.type"  style="z-index:999">
-                <Option value="0">成员介绍</Option>
-                <Option value="1">联系我们</Option> 
-                <Option value="2">关于我们</Option> 
-                <Option value="3">加入我们</Option>  
-                <Option value="4">法律声明及隐私权政策</Option>                
+                <Option value="1">捷航简介</Option>
+                <Option value="2">企业文化</Option> 
+                <Option value="3">企业环境</Option> 
+                <Option value="4">隐私说明</Option>  
+                <Option value="5">联系我们</Option>                
             </Select>
         </FormItem>  
         <FormItem label="文章关键词">
@@ -54,7 +54,7 @@ export default {
       formItem: {
         // language: "zh",
         keywords: "",
-        type: "0"
+        type: "1"
       },
       content: "",
       article: ""
@@ -71,7 +71,7 @@ export default {
     getblank() {
       this.$refs.editor.setHtml("");
       this.formItem.keywords = "";
-      this.formItem.type = "0";
+      this.formItem.type = "1";
       this.content = "";
       this.article = "";
     },

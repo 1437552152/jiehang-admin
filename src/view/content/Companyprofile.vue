@@ -27,16 +27,16 @@ export default {
           key: "type",
           render(h, params) {
             let text = "";
-            if (params.row.type == "0") {
-              text = "成员介绍";
-            } else if (params.row.type == "1") {
-              text = "联系我们";
+            if (params.row.type == "1") {
+              text = "捷航简介";
             } else if (params.row.type == "2") {
-              text = "关于我们";
+              text = "企业文化";
             } else if (params.row.type == "3") {
-              text = "加入我们";
+              text = "企业环境";
             } else if (params.row.type == "4") {
-              text = "法律声明及隐私权政策";
+              text = "隐私说明";
+            } else if (params.row.type == "5") {
+              text = "联系我们";
             }
             return h("div", text);
           }
